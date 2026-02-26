@@ -59,18 +59,20 @@ export default function ProjectsSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
               className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-8 items-start") : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
-              style={{
+              style={isDesktop ? {
                 marginBottom: project.id === 'bullet-time' ? '-30px' : (project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0')),
                 paddingTop: index === 0 ? '100px' : '0',
                 marginTop: project.id === 'bullet-time' ? '-85px' : (project.id === 'icarus' ? '-100px' : (project.id === 'nachtbrakers' ? '-10px' : (project.id === 'kamer-van-brabant' ? '-10px' : (project.id === 'olifantendoders' ? '-20px' : '0'))))
+              } : {
+                marginBottom: index < PROJECTS.length - 1 ? '60px' : '0'
               }}
             >
               {/* Left Media (Video 1 or Image) */}
               {isThreeColumn && (
-                <div className="lg:order-1" style={project.id === 'bullet-time' ? { marginTop: '-237px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '-53px' } : {}))}>
+                <div className="lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '-237px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '-53px' } : {}))) : {}}>
                   {project.image ? (
                     // Always show image on left if available
-                    <div className="relative w-full rounded-lg overflow-hidden" style={project.id === 'tranen-castro' ? { width: '71%' } : {}}>
+                    <div className="relative w-full rounded-lg overflow-hidden" style={isDesktop && project.id === 'tranen-castro' ? { width: '71%' } : {}}>
                       <Image
                         src={project.image}
                         alt={`${project.title} - ${project.imageSecondary ? 'Award 1' : ''}`}
@@ -180,7 +182,7 @@ export default function ProjectsSection() {
                   // Two column: show trailer or image
                   project.id === 'nachtbrakers' && project.imageSecondary && project.image ? (
                     // Stacked images for Nachtbrakers
-                    <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', marginTop: '86px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', marginTop: isDesktop ? '86px' : '0' }}>
                       <div className="relative w-full rounded-lg overflow-hidden" style={{ width: '50%' }}>
                         <Image
                           src={project.imageSecondary}

@@ -2,11 +2,20 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import Section from '@/components/layout/Section';
 import VideoPlayer from '@/components/ui/VideoPlayer';
 import { PROJECTS, SHOWREELS } from '@/lib/constants';
 
 export default function ProjectsSection() {
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
   return (
     <Section id="projects" className="bg-gray-50">
       <div className="w-full mx-auto">
@@ -97,7 +106,7 @@ export default function ProjectsSection() {
               )}
 
               {/* Content */}
-              <div className={isThreeColumn ? 'lg:order-2' : (index % 2 === 0 ? 'lg:order-1' : 'lg:order-2')} style={project.id === 'tranen-castro' ? { marginTop: '-60px', marginLeft: '-95px' } : {}}>
+              <div className={isThreeColumn ? 'lg:order-2' : (index % 2 === 0 ? 'lg:order-1' : 'lg:order-2')} style={isDesktop && project.id === 'tranen-castro' ? { marginTop: '-60px', marginLeft: '-95px' } : {}}>
                 <h3 className="text-3xl font-bold uppercase tracking-wider" style={{ marginBottom: '30px' }}>
                   {project.title}
                 </h3>
@@ -126,7 +135,7 @@ export default function ProjectsSection() {
               </div>
 
               {/* Right Media (Video 2 or single media) */}
-              <div className={isThreeColumn ? 'lg:order-3' : (index % 2 === 0 ? 'lg:order-2' : 'lg:order-1')} style={project.id === 'bullet-time' ? { marginTop: '-237px' } : (project.id === 'tranen-castro' ? { marginTop: '-60px' } : (project.id === 'icarus' ? { marginTop: '5px' } : (project.id === 'merlijn-over-de-grens' ? { marginTop: '8px' } : (project.id === 'merlijn-napoleon' ? { marginTop: '7px' } : (project.id === 'merlijn-atlantikwall' ? { marginTop: '7px' } : (project.id === 'nachtbrakers' ? { marginTop: '5px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '10px' } : (project.id === 'ai-media-innovation' ? { marginTop: '150px' } : (project.id === 'olifantendoders' ? { marginTop: '5px' } : {})))))))))}>
+              <div className={isThreeColumn ? 'lg:order-3' : (index % 2 === 0 ? 'lg:order-2' : 'lg:order-1')} style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '-237px' } : (project.id === 'tranen-castro' ? { marginTop: '-60px' } : (project.id === 'icarus' ? { marginTop: '5px' } : (project.id === 'merlijn-over-de-grens' ? { marginTop: '8px' } : (project.id === 'merlijn-napoleon' ? { marginTop: '7px' } : (project.id === 'merlijn-atlantikwall' ? { marginTop: '7px' } : (project.id === 'nachtbrakers' ? { marginTop: '5px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '10px' } : (project.id === 'ai-media-innovation' ? { marginTop: '150px' } : (project.id === 'olifantendoders' ? { marginTop: '5px' } : {})))))))))}>
                 {isThreeColumn ? (
                   // Three column: show trailerSecondary, imageSecondary, or trailer
                   project.trailerSecondary ? (

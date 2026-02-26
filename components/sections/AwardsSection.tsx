@@ -10,7 +10,7 @@ export default function AwardsSection() {
   const castroProject = PROJECTS.find(p => p.id === 'tranen-castro');
 
   return (
-    <Section id="awards" className="bg-gray-50 !p-0" style={{ marginTop: '-175px' }}>
+    <Section id="awards" className="bg-gray-50 !p-0 lg:-mt-[175px]">
       <div className="w-full">
         {/* Title Section */}
         <div className="max-w-6xl mx-auto py-24 px-8">

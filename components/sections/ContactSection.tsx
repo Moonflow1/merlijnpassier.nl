@@ -8,7 +8,7 @@ import { CONTACT_INFO } from '@/lib/constants';
 export default function ContactSection() {
   return (
     <Section id="contact" className="bg-gray-50">
-      <div className="max-w-6xl mx-auto" style={{ marginTop: '-750px' }}>
+      <div className="max-w-6xl mx-auto lg:-mt-[750px]">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

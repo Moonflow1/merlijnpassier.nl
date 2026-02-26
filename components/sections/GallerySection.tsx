@@ -8,7 +8,7 @@ import { GALLERY_IMAGES } from '@/lib/constants';
 export default function GallerySection() {
   return (
     <Section id="gallery" className="">
-      <div className="max-w-6xl mx-auto" style={{ marginTop: '-370px' }}>
+      <div className="max-w-6xl mx-auto lg:-mt-[370px]">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

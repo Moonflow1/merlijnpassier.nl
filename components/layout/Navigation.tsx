@@ -60,8 +60,7 @@ export default function Navigation() {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="hover:opacity-70 transition-opacity"
-              style={{ marginLeft: '50px' }}
+              className="hover:opacity-70 transition-opacity lg:ml-12"
               whileHover={{ scale: 1.05 }}
             >
               <Image
@@ -69,7 +68,7 @@ export default function Navigation() {
                 alt="Merlijn Passier Logo"
                 width={180}
                 height={80}
-                className="h-12 w-auto"
+                className="h-10 md:h-12 w-auto"
                 priority
               />
             </motion.a>

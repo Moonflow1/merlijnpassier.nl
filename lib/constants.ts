@@ -178,7 +178,15 @@ export const CUTJONGENS_INFO = {
   ]
 };
 
-export const PRESENTER_WORK = {
+export interface Show {
+  id: string;
+  title: string;
+  description: string;
+  image?: string;
+  thumbnail?: string;
+}
+
+export const PRESENTER_WORK: { shows: Show[] } = {
   shows: []
 };
 

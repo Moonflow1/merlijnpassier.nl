@@ -8,7 +8,7 @@ import VideoPlayer from '@/components/ui/VideoPlayer';
 import { PROJECTS, SHOWREELS } from '@/lib/constants';
 
 export default function ProjectsSection() {
-  const [isDesktop, setIsDesktop] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);

@@ -96,13 +96,12 @@ export default function AwardsSection() {
         {/* Bullet Time Laurels */}
         <div className="w-full bg-white relative">
           {/* Extra white space + Title */}
-          <div className="max-w-6xl mx-auto px-8 pb-12" style={{ paddingTop: '97px' }}>
+          <div className="max-w-6xl mx-auto px-8 pb-12 lg:pt-[97px]">
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold uppercase tracking-wider text-center"
-              style={{ marginLeft: '100px' }}
             >
               Bullet Time
             </motion.h3>

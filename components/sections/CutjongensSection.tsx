@@ -8,7 +8,7 @@ import { CUTJONGENS_INFO } from '@/lib/constants';
 
 export default function CutjongensSection() {
   return (
-    <Section id="cutjongens" className="" style={{ marginTop: '-200px' }}>
+    <Section id="cutjongens" className="lg:-mt-[200px]">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -63,8 +63,7 @@ export default function CutjongensSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto"
-          style={{ marginTop: '70px' }}
+          className="max-w-4xl mx-auto mt-8 lg:mt-[70px]"
         >
           <h3 className="text-2xl font-bold uppercase tracking-wider mb-8 text-center">
             Cutjongens Showreel

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { SITE_CONFIG } from '@/lib/constants';
 
 export default function Navigation() {
@@ -59,11 +60,18 @@ export default function Navigation() {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-xl font-bold uppercase tracking-wider hover:opacity-70 transition-opacity"
+              className="hover:opacity-70 transition-opacity"
               style={{ marginLeft: '50px' }}
               whileHover={{ scale: 1.05 }}
             >
-              Merlijn Passier
+              <Image
+                src="/logo.png"
+                alt="Merlijn Passier Logo"
+                width={180}
+                height={80}
+                className="h-12 w-auto"
+                priority
+              />
             </motion.a>
 
             {/* Desktop Navigation */}

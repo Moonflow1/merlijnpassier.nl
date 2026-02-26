@@ -36,7 +36,9 @@ export interface Project {
   year: number | string;
   type: string;
   image?: string;
+  imageSecondary?: string;
   trailer?: string;
+  trailerSecondary?: string;
   description: string;
   awards?: string[];
 }

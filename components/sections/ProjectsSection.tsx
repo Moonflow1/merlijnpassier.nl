@@ -109,12 +109,40 @@ export default function ProjectsSection() {
 
               {/* Content */}
               <div className={isThreeColumn ? 'lg:order-2' : (index % 2 === 0 ? 'lg:order-1' : 'lg:order-2')} style={isDesktop && project.id === 'tranen-castro' ? { marginTop: '-60px', marginLeft: '-95px' } : {}}>
-                <h3 className="text-3xl font-bold uppercase tracking-wider" style={{ marginBottom: '30px' }}>
-                  {project.title}
-                </h3>
-                <p className="text-sm uppercase tracking-wider opacity-60" style={{ marginBottom: '30px' }}>
-                  {project.year} • {project.type}
-                </p>
+                {project.id === 'tranen-castro' || project.id === 'bullet-time' || project.id === 'icarus' ? (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '0px' }}>
+                    <div style={{ flex: '1 1 auto', minWidth: 0 }}>
+                      <h3 className="text-3xl font-bold uppercase tracking-wider" style={{ marginBottom: '30px' }}>
+                        {project.title}
+                      </h3>
+                      <p className="text-sm uppercase tracking-wider opacity-60">
+                        {project.year} • {project.type}
+                      </p>
+                    </div>
+                    <div style={{ flex: '0 0 auto' }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={project.id === 'tranen-castro' ? '/images/projects/Gouden_Kalf_website.jpg' : project.id === 'bullet-time' ? '/images/projects/Oscar.jpg' : '/images/projects/TV-Beeld-2017.jpg'}
+                        alt={project.id === 'tranen-castro' ? 'Gouden Kalf award' : project.id === 'bullet-time' ? 'Oscar award' : 'Gouden TV-Beeld award'}
+                        style={project.id === 'tranen-castro'
+                          ? { width: '63px', height: 'auto', objectFit: 'contain', display: 'block', transform: 'translate(-110px, -15px)' }
+                          : project.id === 'bullet-time'
+                          ? { width: '40px', height: 'auto', objectFit: 'contain', display: 'block', transform: 'translate(-100px, -15px)' }
+                          : { width: '30px', height: 'auto', objectFit: 'contain', display: 'block', transform: 'translate(-320px, -15px)' }
+                        }
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <h3 className="text-3xl font-bold uppercase tracking-wider" style={{ marginBottom: '30px' }}>
+                      {project.title}
+                    </h3>
+                    <p className="text-sm uppercase tracking-wider opacity-60" style={{ marginBottom: '30px' }}>
+                      {project.year} • {project.type}
+                    </p>
+                  </>
+                )}
                 <p className="text-lg leading-relaxed" style={{ marginBottom: '30px' }}>
                   {project.description}
                 </p>
@@ -137,7 +165,7 @@ export default function ProjectsSection() {
               </div>
 
               {/* Right Media (Video 2 or single media) */}
-              <div className={isThreeColumn ? 'lg:order-3' : (index % 2 === 0 ? 'lg:order-2' : 'lg:order-1')} style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '-237px' } : (project.id === 'tranen-castro' ? { marginTop: '-60px' } : (project.id === 'icarus' ? { marginTop: '5px' } : (project.id === 'merlijn-over-de-grens' ? { marginTop: '8px' } : (project.id === 'merlijn-napoleon' ? { marginTop: '7px' } : (project.id === 'merlijn-atlantikwall' ? { marginTop: '7px' } : (project.id === 'nachtbrakers' ? { marginTop: '5px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '10px' } : (project.id === 'ai-media-innovation' ? { marginTop: '150px' } : (project.id === 'olifantendoders' ? { marginTop: '5px' } : {})))))))))}>
+              <div className={isThreeColumn ? 'lg:order-3' : (index % 2 === 0 ? 'lg:order-2' : 'lg:order-1')} style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '-240px' } : (project.id === 'tranen-castro' ? { marginTop: '-60px' } : (project.id === 'icarus' ? { marginTop: '5px' } : (project.id === 'merlijn-over-de-grens' ? { marginTop: '8px' } : (project.id === 'merlijn-napoleon' ? { marginTop: '7px' } : (project.id === 'merlijn-atlantikwall' ? { marginTop: '7px' } : (project.id === 'nachtbrakers' ? { marginTop: '5px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '10px' } : (project.id === 'ai-media-innovation' ? { marginTop: '150px' } : (project.id === 'olifantendoders' ? { marginTop: '5px' } : {})))))))))) : {}}>
                 {isThreeColumn ? (
                   // Three column: show trailerSecondary, imageSecondary, or trailer
                   project.trailerSecondary ? (

@@ -48,15 +48,15 @@ export const PROJECTS: Project[] = [
     id: "tranen-castro",
     title: "Castro's Tears",
     year: 1997,
-    type: "Documentary - 1 x 55 minutes",
+    type: "Documentary - 55 minutes",
     image: "/images/projects/Castro-Poster.jpg",
     imageSecondary: "/images/projects/Castro-Golden-Calf-Color.jpg",
     trailer: "https://vimeo.com/486723293",
     trailerSecondary: "https://vimeo.com/364925571",
     description: "Driven by his ideals, a Dutch Communist travels to Cuba in order to obtain the ultimate trophy for his body fluid collection from Fidel Castro.",
     awards: [
-      "Golden Calf - Best Documentary 2018",
-      "Golden Calf - Best Actor 2018",
+      "Golden Calf - Best Documentary 1997",
+      "Golden Calf - Best Actor 1997",
       "Fourth International Festival of Film Schools in Mexico 1997 - Best Fiction Video Award",
       "DocumentArt Film Festival Neubrandenburg 1998 - Eerste Prijs voor de Beste Film: \"Latüchtpreis des Kulturministeriums\""
     ]
@@ -65,7 +65,7 @@ export const PROJECTS: Project[] = [
     id: "bullet-time",
     title: "Bullet Time",
     year: 2017,
-    type: "animation - 1 x 5 minuten",
+    type: "animation - 5 minuten",
     trailer: "https://vimeo.com/486723240",
     trailerSecondary: "https://vimeo.com/52169657",
     description: "This Dutch entry for the Oscars 2018 is about two bullets that fall in love while taking part in an old fashioned shootout. A film made with paper and ink and the talented Frodo Kuipers.",
@@ -75,7 +75,7 @@ export const PROJECTS: Project[] = [
     id: "icarus",
     title: "Icarus",
     year: 2017,
-    type: "Drama - 1 x 50 minutes",
+    type: "Drama - 50 minutes",
     trailer: "https://vimeo.com/1164316927",
     description: "Marcel Hensema plays the fallen professor Diederik Stapel, who attempts to create a theater show with director Frank Lammers. For his role in 2017, Lammers won a \"Gouden TV-beeld\" (Golden TV Award) for Best Supporting Actor.",
     awards: []

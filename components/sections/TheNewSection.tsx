@@ -7,7 +7,7 @@ import { THE_NEW_INFO } from '@/lib/constants';
 
 export default function TheNewSection() {
   return (
-    <Section id="the_new" className="bg-gray-50 lg:-mb-16">
+    <Section id="the_new" className="bg-gray-50 lg:-mb-16" >
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}

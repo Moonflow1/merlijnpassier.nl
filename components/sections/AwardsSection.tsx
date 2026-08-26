@@ -94,7 +94,7 @@ export default function AwardsSection() {
         )}
 
         {/* Bullet Time Laurels */}
-        <div className="w-full bg-white relative">
+        <div className="w-full bg-white relative" style={{ marginTop: '75px' }}>
           {/* Extra white space + Title */}
           <div className="max-w-6xl mx-auto px-8 pb-12 lg:pt-[97px]">
             <motion.h3

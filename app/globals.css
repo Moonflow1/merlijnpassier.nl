@@ -158,29 +158,32 @@ section + section {
   border-top: 1px solid transparent;
 }
 
-section#bio {
-  margin-top: -100px;
-}
-
-section#awards {
-  margin-top: -50px;
-}
-
 section#the_new {
   min-height: auto !important;
   padding-bottom: 110px !important;
 }
 
-section#cutjongens {
-  margin-top: -145px !important;
-}
+/* Desktop-only overlap between sections (mobile stacks normally) */
+@media (min-width: 1024px) {
+  section#bio {
+    margin-top: -100px;
+  }
 
-section#gallery {
-  margin-top: -190px !important;
-}
+  section#awards {
+    margin-top: -50px;
+  }
 
-section#contact {
-  margin-top: -240px !important;
+  section#cutjongens {
+    margin-top: -145px !important;
+  }
+
+  section#gallery {
+    margin-top: -190px !important;
+  }
+
+  section#contact {
+    margin-top: -240px !important;
+  }
 }
 
 

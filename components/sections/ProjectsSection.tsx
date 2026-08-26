@@ -109,8 +109,8 @@ export default function ProjectsSection() {
 
               {/* Content */}
               <div className={isThreeColumn ? 'lg:order-2' : (index % 2 === 0 ? 'lg:order-1' : 'lg:order-2')} style={isDesktop && project.id === 'tranen-castro' ? { marginTop: '-60px', marginLeft: '-95px' } : {}}>
-                {project.id === 'tranen-castro' || project.id === 'bullet-time' || project.id === 'icarus' ? (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '0px' }}>
+                {(project.id === 'tranen-castro' || project.id === 'bullet-time' || project.id === 'icarus') ? (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: isDesktop ? '0px' : '30px' }}>
                     <div style={{ flex: '1 1 auto', minWidth: 0 }}>
                       <h3 className="text-3xl font-bold uppercase tracking-wider" style={{ marginBottom: '30px' }}>
                         {project.title}
@@ -124,7 +124,9 @@ export default function ProjectsSection() {
                       <img
                         src={project.id === 'tranen-castro' ? '/images/projects/Gouden_Kalf_website.jpg' : project.id === 'bullet-time' ? '/images/projects/Oscar.jpg' : '/images/projects/TV-Beeld-2017.jpg'}
                         alt={project.id === 'tranen-castro' ? 'Gouden Kalf award' : project.id === 'bullet-time' ? 'Oscar award' : 'Gouden TV-Beeld award'}
-                        style={project.id === 'tranen-castro'
+                        style={!isDesktop
+                          ? { width: project.id === 'tranen-castro' ? '63px' : project.id === 'bullet-time' ? '40px' : '30px', height: 'auto', objectFit: 'contain', display: 'block' }
+                          : project.id === 'tranen-castro'
                           ? { width: '63px', height: 'auto', objectFit: 'contain', display: 'block', transform: 'translate(-110px, -15px)' }
                           : project.id === 'bullet-time'
                           ? { width: '40px', height: 'auto', objectFit: 'contain', display: 'block', transform: 'translate(-100px, -15px)' }

@@ -20,12 +20,3 @@ export interface GalleryImage {
   src: string;
   alt: string;
 }
-
-export interface PresenterShow {
-  id: string;
-  title: string;
-  description: string;
-  image?: string;
-  thumbnail?: string;
-  avatar?: string;
-}

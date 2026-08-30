@@ -8,7 +8,7 @@ import { CUTJONGENS_INFO } from '@/lib/constants';
 
 export default function CutjongensSection() {
   return (
-    <Section id="cutjongens" className="lg:-mt-[350px]">
+    <Section id="cutjongens" className="">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}

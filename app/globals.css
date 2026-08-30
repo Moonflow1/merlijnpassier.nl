@@ -4,6 +4,9 @@
   --background: #ffffff;
   --foreground: #000000;
   --gray-custom: #e6e6e6;
+  /* Measured from the hero photograph's own backdrop so the image edges
+     dissolve into the page instead of showing as a rectangle. */
+  --hero-bg: #f7f8f3;
 }
 
 @theme inline {
@@ -18,10 +21,16 @@
   --font-futura-bold: 'Futura', 'Century Gothic', 'AppleGothic', sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Must stay inside @layer base. Unlayered CSS outranks Tailwind's layered
+   utilities, so an unlayered version of this reset silently zeroes out every
+   p-*, m-* and space-y-* class in the codebase. Inside the base layer the
+   utilities layer wins, which is what we want. */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
 html {
@@ -156,6 +165,13 @@ section {
 section + section {
   margin-top: 0;
   border-top: 1px solid transparent;
+}
+
+/* Hero backdrop matches the photograph's own white, so the contained image
+   has no visible rectangle edge. Set here rather than as a Tailwind utility:
+   `@theme inline` cannot resolve a colour that points at a :root variable. */
+section#hero {
+  background-color: var(--hero-bg);
 }
 
 section#the_new {

@@ -2,6 +2,104 @@
 
 All notable changes to the Merlijn Passier Portfolio Website.
 
+## [1.7.0] - 2026-08-31
+
+### Fixed
+- **The `* { margin: 0; padding: 0 }` reset now sits inside `@layer base`.** It was unlayered, and unlayered CSS outranks Tailwind's layered utilities, so every `p-*`, `m-*` and `space-y-*` class on the site computed to zero. They all work now. This was the root cause of the hardcoded-offset architecture — inline styles and `!important` were the only things that had any effect.
+- **Footer was collapsed to 20px** and clipping its own copyright line, because its `pt-12 pb-3` was inert. It now renders at its intended height.
+- **Footer was not full width.** `body` is a column flex container with `align-items: center`, so the footer shrank to its content. Added `w-full`. This was always broken but invisible while the footer was 20px tall.
+- **Mobile hamburger icon rendered as one thick bar** instead of three, because its `space-y-1.5` was inert. Fixed by the reset change.
+- **Icarus's title and year were completely hidden** behind Bullet Time's video. Bullet Time's videos extend to the bottom edge of their row, and Icarus was pulled up into them by `marginTop: -100px` plus Bullet Time's `marginBottom: -30px`. Both are now `0`. Pre-existing — present identically before this release.
+- **Castro's Tears award list was clipped on its left edge** by Bullet Time's raised video. Caused by the content column's `marginLeft: -95px` reaching into the video's column; removed.
+- Award marks beside the Castro's Tears / Bullet Time / Icarus titles no longer rely on `translate(-110px / -100px / -320px)` to claw themselves back from the far right. The title block is now `flex: 0 1 auto` so the mark simply follows the title, and only a `translateY(-15px)` optical nudge remains.
+
+### Removed
+- Stale per-component negative margins that duplicated the overlap rules in `globals.css`: `lg:-mt-[350px]` (Footer, Cutjongens), `lg:-mt-[750px]` (Contact), `lg:-mt-[370px]` (Gallery), `lg:-mt-[219px]` (Bio), `lg:-mt-[175px]` (Awards), `lg:-mb-16` (the_new). All were inert; had they been left in place they would have stacked on top of the `globals.css` values once the reset was fixed. **`globals.css` is now the single source of truth for section overlaps.**
+
+### Verification
+Measured before and after at 1600×1000 and 390×844. Section offsets are unchanged (`-100 / -50 / -145 / -190 / -240` on desktop); the growth below is spacing that was always intended but never applied:
+
+| Section | Desktop | Mobile |
+|---|---|---|
+| projects | +208px | +155px |
+| awards | +451px | +299px |
+| the_new | +48px | +48px |
+| bio | – | +64px |
+| contact | – | +40px |
+| footer | +60px | +80px |
+| **page total** | **12660 → 13427** | **19491 → 20178** |
+
+Automated sweep over the whole page at both viewports reports zero text/media overlaps and no horizontal overflow. `tsc` clean, `npm run build` succeeds.
+
+## [1.6.0] - 2026-08-30
+
+### Changed
+- **Hero now shows the entire photograph.** It was previously `object-cover`, which cropped roughly 12% of the height on desktop and about two thirds of the width on mobile — the mirror frame and the foreground figure were being cut off entirely on phones. The photo is now `object-contain` and never cropped.
+- The hero backdrop is set to `--hero-bg: #f7f8f3`, measured from the photograph's own white, so the image edges dissolve into the page instead of reading as a rectangle.
+- Hero restructured from absolutely-positioned overlays into a flex column: title band, photo (`flex-1`), then the View Work button and scroll indicator. Nothing overlaps at any viewport size.
+- Hero text switched from white to black, and the `bg-black/30` darkening overlay was removed — it existed only to make white text legible over the photo. This matches the black-on-white system used by the rest of the site.
+- Hero title scaled down (`lg:text-8xl` → `lg:text-6xl`) to give the photograph more vertical room.
+- Scroll indicator hidden below the `sm` breakpoint, where there is no room for it.
+
+### Added
+- `fit` prop on `ParallaxImage` (`'cover' | 'contain'`, default `'cover'`). Under `contain` the moving layer is inset and the parallax travel is clamped so the image can never drift out of frame.
+- `sizes` prop on `ParallaxImage`. The hero now requests `100vw` instead of the old default of `33vw`, which was under-requesting resolution for a full-width image.
+
+### Fixed
+- **Removed a 3px black border on the top and left edges of `Merlijn suited.jpg`** — a scan/export artifact in the source file. It had always been there but was hidden by the old crop, and appeared as a hard line once the full photo was shown. The image is now 1402 × 1297 (was 1405 × 1300) and 345 KB (was 647 KB).
+- Hero title no longer sits underneath the fixed navigation bar.
+
+## [1.5.1] - 2026-08-30
+
+### Removed
+- **`PresenterSection.tsx`** — dead code. The component had not been rendered since v1.1.0, when its content moved into the Projects section, and its data source `PRESENTER_WORK.shows` was an empty array.
+- **`PRESENTER_WORK` constant and its `Show` interface** from `lib/constants.ts` (orphaned by the above)
+- **`PresenterShow` interface** from `types/index.ts` (unused)
+- **`react-player` dependency** — unused since v1.0.0, when video playback moved to native Vimeo iframes. Removes 54 transitive packages.
+- Unused imports: `CONTACT_INFO` in `Footer.tsx`, `VideoPlayer` in `AwardsSection.tsx`
+
+### Notes
+- No rendered output changes — everything removed was already unreachable.
+- Verified with `tsc --noEmit` (clean), `npm run lint` (0 warnings) and `npm run build` (succeeds).
+- Two pre-existing `react/no-unescaped-entities` lint errors remain in `AwardsSection.tsx:58` and `ProjectsSection.tsx:31` (unescaped apostrophes in "Castro's Tears"). They do not block the build and were left untouched.
+
+## [1.5.0] - 2026-08-26
+
+### Added
+- **Award thumbnails beside project titles** in the Projects section:
+  - Gouden Kalf next to Castro's Tears (`Gouden_Kalf_website.jpg`, 63px)
+  - Oscar next to Bullet Time (`Oscar.jpg`, 40px)
+  - Gouden TV-Beeld next to Icarus (`TV-Beeld-2017.jpg`, 30px)
+  - Title and thumbnail share a flex row; on desktop the thumbnail is pulled left with a `translate()` transform, on mobile it sits inline at reduced size
+
+### Changed
+- **Desktop section overlaps moved to `globals.css`**: negative margins for `#bio` (-100px), `#awards` (-50px), `#cutjongens` (-145px), `#gallery` (-190px) and `#contact` (-240px) now live in one `@media (min-width: 1024px)` block instead of being spread across components
+- `section#the_new`: `min-height: auto`, `padding-bottom: 110px`
+- Cutjongens section offset changed from -200px to -350px (desktop only); showreel top margin 70px → 95px
+- Cutjongens `www.cutjongens.nl` link now bold
+- Bullet Time laurels: title no longer offset 100px to the right (now centred); laurels block gained a 75px top margin
+- Project `type` strings simplified — "1 x 55 minutes" → "55 minutes" (Castro's Tears, Bullet Time, Icarus)
+
+### Fixed
+- Castro's Tears Golden Calf years corrected from 2018 to **1997** (Best Documentary and Best Actor)
+- Mobile overlap regressions: the new `globals.css` overlap rules were initially unscoped and applied on phones too; they are now inside the desktop media query
+
+## [1.4.0] - 2026-02-26
+
+### Added
+- **Custom logo & favicon**: film-strip infinity mark with MP initials, shipped as `app/favicon.ico`, `app/icon.png` and `public/logo.png` (transparent background)
+- Logo image in the navigation header, replacing the "Merlijn Passier" text wordmark (h-10 mobile / h-12 desktop, `priority` loaded)
+- `isDesktop` viewport check in `ProjectsSection` (`window.innerWidth >= 1024` with a resize listener) used to gate all hardcoded pixel positioning
+
+### Changed
+- Navigation logo spacing: inline `marginLeft: 50px` replaced with `lg:ml-12`
+- Per-section negative margins converted from inline `style` to `lg:` Tailwind classes so they only apply on desktop — Footer (-350px), Awards (-175px), Bio (-219px), Contact (-750px), Gallery (-370px), Cutjongens, the_new
+
+### Fixed
+- **Mobile text cutoff**: Castro's Tears content no longer shifted `-95px` left off-screen on phones; its 71% image width is desktop-only
+- **Mobile section overlaps**: per-project `marginTop`/`marginBottom` nudges (Bullet Time -237px, Icarus -100px, and others) now apply only on desktop; mobile falls back to a flat 60px gap between projects
+- Nachtbrakers stacked images no longer carry an 86px top margin on mobile
+
 ## [1.3.0] - 2026-02-25
 
 ### Added
@@ -183,6 +281,9 @@ All notable changes to the Merlijn Passier Portfolio Website.
 
 ## Future Enhancements (Planned)
 
+- [x] ~~Move the CSS reset into @layer base so Tailwind spacing works~~ (done in 1.7.0)
+- [ ] Replace the remaining per-project pixel offsets with a proper layout system
+- [x] ~~Remove dead `PresenterSection` and unused `react-player` dependency~~ (done in 1.5.1)
 - [ ] Add actual Futura font files
 - [ ] Implement contact form with backend
 - [ ] Add CMS integration (Sanity/Contentful)
@@ -195,5 +296,18 @@ All notable changes to the Merlijn Passier Portfolio Website.
 
 ---
 
-**Maintained by**: Claude Code Assistant
-**Last Update**: February 10, 2026
+## Known Issues
+
+- ~~**Tailwind margin and padding utilities do not work anywhere on this site.**~~ **Fixed in 1.7.0** — the `* { margin: 0; padding: 0 }` reset now lives in `@layer base`, so utilities win as they should. Keep it there: moving it back out would silently zero every `p-*`, `m-*` and `space-y-*` class on the site again.
+
+  The `!` prefixes in `HeroSection.tsx` are **still required** — don't strip them. `globals.css` also contains deliberate unlayered `!important` rules (`section { padding: 160px 0 !important }`, `section > div { padding-left: 160px !important }`). For `!important` declarations the cascade-layer order reverses, so a *layered* `!important` utility beats an *unlayered* one: `!px-8` computes to 32px, while a plain `px-8` would lose and inherit the global 160px.
+
+- **Layout still relies on hardcoded pixel offsets.** Sections and individual projects are positioned with negative margins tuned by eye (see `ProjectsSection.tsx` and the desktop media query in `globals.css`). Adding or reordering a project will likely require re-tuning its neighbours. 1.7.0 removed the worst of these — the duplicated section margins and the three `translate(-Npx)` award-mark offsets — but the per-project `marginTop`/`marginBottom` values remain.
+
+  Two known structural oddities, both pre-existing and cosmetic: Bullet Time's two videos overlap Castro's Tears' video vertically (both are black, so it reads as one block), and the second contact photo is left-aligned rather than centred on mobile.
+- **Two lint errors**: unescaped apostrophes in `AwardsSection.tsx:58` and `ProjectsSection.tsx:31`. Cosmetic — the build is unaffected.
+- **`types/index.ts` holds two unused interfaces**, `NavigationItem` and `Project`. The `Project` interface actually in use is the one declared in `lib/constants.ts`; the duplicate here is stale.
+
+---
+
+**Last Update**: August 31, 2026

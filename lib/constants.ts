@@ -178,18 +178,6 @@ export const CUTJONGENS_INFO = {
   ]
 };
 
-export interface Show {
-  id: string;
-  title: string;
-  description: string;
-  image?: string;
-  thumbnail?: string;
-}
-
-export const PRESENTER_WORK: { shows: Show[] } = {
-  shows: []
-};
-
 export const GALLERY_IMAGES = [
   {
     src: "/images/gallery/Merlijn Tanja Chris.jpg",

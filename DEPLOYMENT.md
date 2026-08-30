@@ -1,41 +1,39 @@
 # Deployment Guide - Merlijn Passier Portfolio
 
-## 🚀 Quick Deployment to Vercel
+## 📦 Repository
 
-### Step 1: Prepare Your Repository
+The project is already under version control and pushed to GitHub:
 
-1. **Initialize Git** (if not already done):
-```bash
-cd merlijn-portfolio
-git init
+```
+origin  https://github.com/Moonflow1/merlijnpassier.nl.git
+branch  main
 ```
 
-2. **Create a `.gitignore`** (already exists, verify it includes):
-```
-node_modules
-.next
-.env*.local
-```
+No `git init` or remote setup is needed. To publish changes:
 
-3. **Commit your code**:
 ```bash
 git add .
-git commit -m "Initial commit: Merlijn Passier portfolio website"
+git commit -m "Describe your change"
+git push
 ```
 
-4. **Push to GitHub**:
+---
+
+## 🚀 Quick Deployment to Vercel
+
+### Step 1: Verify the build locally
+
 ```bash
-# Create a new repository on GitHub first, then:
-git remote add origin https://github.com/YOUR_USERNAME/merlijn-portfolio.git
-git branch -M main
-git push -u origin main
+npm run build
 ```
+
+Fix any TypeScript or lint errors before pushing — the hosted build will fail on the same errors.
 
 ### Step 2: Deploy to Vercel
 
 1. **Go to [Vercel](https://vercel.com)**
 2. Click **"Add New Project"**
-3. **Import** your GitHub repository
+3. **Import** the `Moonflow1/merlijnpassier.nl` repository
 4. Vercel will auto-detect Next.js settings:
    - Framework Preset: **Next.js**
    - Build Command: `npm run build`
@@ -251,13 +249,14 @@ jobs:
 - [ ] Website loads correctly
 - [ ] All images display in full color
 - [ ] Videos play from Vimeo
-- [ ] Navigation works smoothly
+- [ ] Navigation works smoothly, MP logo loads and links to top
 - [ ] Parallax effects work on desktop
-- [ ] Mobile responsive design works
+- [ ] **Mobile: no text cut off and no overlapping sections** (the layout uses desktop-only negative margins — this is the most common regression, test at ≤ 767px and around the 1024px breakpoint)
+- [ ] Award thumbnails (Gouden Kalf / Oscar / TV-Beeld) sit correctly beside their project titles on both desktop and mobile
 - [ ] All links work
 - [ ] Contact email link works
 - [ ] Page titles and meta descriptions are correct
-- [ ] Favicon displays
+- [ ] Favicon displays (MP film-strip mark)
 - [ ] SSL certificate is active (HTTPS)
 - [ ] Test on multiple browsers (Chrome, Firefox, Safari, Edge)
 - [ ] Test on mobile devices (iOS, Android)
@@ -317,4 +316,4 @@ For deployment issues:
 
 ---
 
-**Last Updated**: February 2026
+**Last Updated**: August 2026

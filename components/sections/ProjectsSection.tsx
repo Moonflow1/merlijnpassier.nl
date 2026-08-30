@@ -60,9 +60,13 @@ export default function ProjectsSection() {
               transition={{ delay: index * 0.2 }}
               className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-8 items-start") : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
               style={isDesktop ? {
-                marginBottom: project.id === 'bullet-time' ? '-30px' : (project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0')),
+                // Bullet Time's videos run to the bottom edge of its row, so a
+                // negative margin here would pull the next project under them.
+                marginBottom: project.id === 'bullet-time' ? '0' : (project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0')),
                 paddingTop: index === 0 ? '100px' : '0',
-                marginTop: project.id === 'bullet-time' ? '-85px' : (project.id === 'icarus' ? '-100px' : (project.id === 'nachtbrakers' ? '-10px' : (project.id === 'kamer-van-brabant' ? '-10px' : (project.id === 'olifantendoders' ? '-20px' : '0'))))
+                // Icarus must not be negative: Bullet Time's videos extend to the
+                // bottom of their row, so pulling Icarus up hides its title behind them.
+                marginTop: project.id === 'bullet-time' ? '-85px' : (project.id === 'icarus' ? '0' : (project.id === 'nachtbrakers' ? '-10px' : (project.id === 'kamer-van-brabant' ? '-10px' : (project.id === 'olifantendoders' ? '-20px' : '0'))))
               } : {
                 marginBottom: index < PROJECTS.length - 1 ? '60px' : '0'
               }}
@@ -108,10 +112,12 @@ export default function ProjectsSection() {
               )}
 
               {/* Content */}
-              <div className={isThreeColumn ? 'lg:order-2' : (index % 2 === 0 ? 'lg:order-1' : 'lg:order-2')} style={isDesktop && project.id === 'tranen-castro' ? { marginTop: '-60px', marginLeft: '-95px' } : {}}>
+              <div className={isThreeColumn ? 'lg:order-2' : (index % 2 === 0 ? 'lg:order-1' : 'lg:order-2')} style={isDesktop && project.id === 'tranen-castro' ? { marginTop: '-60px' } : {}}>
                 {(project.id === 'tranen-castro' || project.id === 'bullet-time' || project.id === 'icarus') ? (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: isDesktop ? '0px' : '30px' }}>
-                    <div style={{ flex: '1 1 auto', minWidth: 0 }}>
+                    {/* shrink-to-fit so the award mark sits directly after the
+                        title instead of being pushed right and dragged back */}
+                    <div style={{ flex: '0 1 auto', minWidth: 0 }}>
                       <h3 className="text-3xl font-bold uppercase tracking-wider" style={{ marginBottom: '30px' }}>
                         {project.title}
                       </h3>
@@ -124,14 +130,15 @@ export default function ProjectsSection() {
                       <img
                         src={project.id === 'tranen-castro' ? '/images/projects/Gouden_Kalf_website.jpg' : project.id === 'bullet-time' ? '/images/projects/Oscar.jpg' : '/images/projects/TV-Beeld-2017.jpg'}
                         alt={project.id === 'tranen-castro' ? 'Gouden Kalf award' : project.id === 'bullet-time' ? 'Oscar award' : 'Gouden TV-Beeld award'}
-                        style={!isDesktop
-                          ? { width: project.id === 'tranen-castro' ? '63px' : project.id === 'bullet-time' ? '40px' : '30px', height: 'auto', objectFit: 'contain', display: 'block' }
-                          : project.id === 'tranen-castro'
-                          ? { width: '63px', height: 'auto', objectFit: 'contain', display: 'block', transform: 'translate(-110px, -15px)' }
-                          : project.id === 'bullet-time'
-                          ? { width: '40px', height: 'auto', objectFit: 'contain', display: 'block', transform: 'translate(-100px, -15px)' }
-                          : { width: '30px', height: 'auto', objectFit: 'contain', display: 'block', transform: 'translate(-320px, -15px)' }
-                        }
+                        style={{
+                          width: project.id === 'tranen-castro' ? '63px' : project.id === 'bullet-time' ? '40px' : '30px',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block',
+                          // lift slightly so the mark reads as centred on the title
+                          // rather than on the title-plus-year block
+                          transform: isDesktop ? 'translateY(-15px)' : undefined,
+                        }}
                       />
                     </div>
                   </div>

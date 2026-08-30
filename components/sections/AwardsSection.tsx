@@ -3,14 +3,13 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Section from '@/components/layout/Section';
-import VideoPlayer from '@/components/ui/VideoPlayer';
 import { AWARDS_IMAGE, PROJECTS } from '@/lib/constants';
 
 export default function AwardsSection() {
   const castroProject = PROJECTS.find(p => p.id === 'tranen-castro');
 
   return (
-    <Section id="awards" className="bg-gray-50 !p-0 lg:-mt-[175px]">
+    <Section id="awards" className="bg-gray-50 !p-0">
       <div className="w-full">
         {/* Title Section */}
         <div className="max-w-6xl mx-auto py-24 px-8">

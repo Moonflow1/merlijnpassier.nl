@@ -10,6 +10,12 @@ interface ParallaxImageProps {
   speed?: number;
   className?: string;
   priority?: boolean;
+  /**
+   * 'cover' fills the box and crops the image.
+   * 'contain' shows the whole image — nothing is cropped.
+   */
+  fit?: 'cover' | 'contain';
+  sizes?: string;
 }
 
 export default function ParallaxImage({
@@ -18,26 +24,41 @@ export default function ParallaxImage({
   speed = 0.5,
   className = '',
   priority = false,
+  fit = 'cover',
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
 }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const isContain = fit === 'contain';
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', `${speed * 100}%`]);
+  // With 'cover' the image overflows its box, so it can travel a long way.
+  // With 'contain' the image is never larger than its box, so any large drift
+  // would push it out of view. The moving layer is inset by 2% top and bottom
+  // (see the h-[94%] below) and the travel is kept inside that gap.
+  const travel = isContain ? speed * 12 : speed * 100;
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', `${travel}%`]);
 
   return (
     <div ref={ref} className={`relative overflow-hidden ${className}`}>
-      <motion.div style={{ y }} className="relative w-full h-full">
+      <motion.div
+        style={{ y }}
+        className={
+          isContain
+            ? 'absolute inset-x-0 top-[2%] h-[94%]'
+            : 'relative w-full h-full'
+        }
+      >
         <Image
           src={src}
           alt={alt}
           fill
-          className="object-cover "
+          className={isContain ? 'object-contain' : 'object-cover'}
           priority={priority}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes={sizes}
         />
       </motion.div>
     </div>

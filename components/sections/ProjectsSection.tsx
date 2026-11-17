@@ -10,11 +10,20 @@ import { PROJECTS, SHOWREELS } from '@/lib/constants';
 export default function ProjectsSection() {
   const [isDesktop, setIsDesktop] = useState(false);
 
+  /**
+   * Must be the same 1024px that Tailwind's lg: uses, and must be asked the
+   * same way. window.innerWidth includes the scrollbar while a media query
+   * does not, so the two disagreed by a scrollbar's width around the
+   * breakpoint; and a resize listener can miss a viewport change that the
+   * media query still catches, which left the grid on three columns while
+   * this flag said one -- a layout neither branch is written for.
+   */
   useEffect(() => {
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
-    checkDesktop();
-    window.addEventListener('resize', checkDesktop);
-    return () => window.removeEventListener('resize', checkDesktop);
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
   return (
     <Section id="projects" className="bg-gray-50">

@@ -58,7 +58,7 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-12 lg:gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 items-start") : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
+              className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-4 lg:gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 items-start") : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
               style={isDesktop ? {
                 // Bullet Time's videos run to the bottom edge of its row, so a
                 // negative margin here would pull the next project under them.
@@ -93,7 +93,10 @@ export default function ProjectsSection() {
                   ) : project.trailerSecondary && project.trailer ? (
                     // If no image, show first video with custom sizing
                     project.id === 'bullet-time' ? (
-                      <div style={{ paddingBottom: '177%', position: 'relative', height: 0, overflow: 'hidden', borderRadius: '0.5rem' }}>
+                      // The tall frame only makes sense in the desktop
+                      // three-column layout. The film itself is 16:9, so on one
+                      // column 177% leaves ~187px empty above and below it.
+                      <div style={{ paddingBottom: isDesktop ? '177%' : '56.25%', position: 'relative', height: 0, overflow: 'hidden', borderRadius: '0.5rem' }}>
                         <iframe
                           src={`https://player.vimeo.com/video/${project.trailer.match(/vimeo\.com\/(\d+)/)?.[1]}?byline=0&portrait=0&title=0`}
                           frameBorder="0"
@@ -184,7 +187,9 @@ export default function ProjectsSection() {
                   project.trailerSecondary ? (
                     <div style={{ height: 'auto' }}>
                       <div style={{
-                        paddingBottom: project.id === 'bullet-time' ? '177%' : (project.id === 'tranen-castro' ? '125%' : '56.25%'),
+                        // Same here: the tall frames are a desktop-only
+                        // device; one column always gets the film's own 16:9.
+                        paddingBottom: !isDesktop ? '56.25%' : (project.id === 'bullet-time' ? '177%' : (project.id === 'tranen-castro' ? '125%' : '56.25%')),
                         position: 'relative',
                         height: 0,
                         overflow: 'hidden',

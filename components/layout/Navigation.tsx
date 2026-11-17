@@ -77,7 +77,10 @@ export default function Navigation() {
       }`}
     >
       <div>
-        <div className="flex flex-wrap justify-between items-center gap-y-2 min-h-20 py-3">
+        {/* One row below 1100px (logo, then the menu underneath); a
+            1fr-auto-1fr grid above it, so the menu sits on the page's centre
+            axis — the same axis the hero title is centred on. */}
+        <div className="grid grid-cols-1 items-center gap-y-2 min-h-20 py-3 min-[1100px]:grid-cols-[1fr_auto_1fr]">
           {/* Logo */}
           <motion.a
             href="#"
@@ -85,7 +88,7 @@ export default function Navigation() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="hover:opacity-70 transition-opacity"
+            className="justify-self-start hover:opacity-70 transition-opacity"
             whileHover={{ scale: 1.05 }}
           >
             <Image
@@ -98,12 +101,14 @@ export default function Navigation() {
             />
           </motion.a>
 
-          {/* Navigation items — full width on their own line below 1100px */}
+          {/* Navigation items — full width on their own line below 1100px,
+              centred in the middle grid column above it. */}
           <div
             className="
               flex flex-wrap items-center
               w-full justify-start gap-x-4 gap-y-1
-              min-[1100px]:w-auto min-[1100px]:justify-end min-[1100px]:gap-8
+              min-[1100px]:w-auto min-[1100px]:col-start-2
+              min-[1100px]:justify-center min-[1100px]:gap-8
             "
           >
             {SITE_CONFIG.navigation.map((item) => (

@@ -60,15 +60,16 @@ export default function ProjectsSection() {
               transition={{ delay: index * 0.2 }}
               className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-4 lg:gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 items-start") : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
               style={isDesktop ? {
-                marginBottom: project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0'),
+                // Bullet Time to Icarus is half the usual 120px, on request.
+                marginBottom: project.id === 'bullet-time' ? '60px' : (project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0')),
                 paddingTop: index === 0 ? '100px' : '0',
                 // Bullet Time's two films are pulled 237px above their row
                 // (see the media margins below), so the row has to start that
                 // much lower for the gap to read as 120px like everywhere else.
                 // Adjacent margins collapse to the larger of the two rather
                 // than adding up, so this has to carry Castro's 120px itself:
-                // 120 + 237 = 357.
-                marginTop: project.id === 'bullet-time' ? '357px' : (project.id === 'icarus' ? '0' : (project.id === 'nachtbrakers' ? '-10px' : (project.id === 'kamer-van-brabant' ? '-10px' : (project.id === 'olifantendoders' ? '-20px' : '0'))))
+                // 60 + 237 = 297, the 60 being half the usual gap, on request.
+                marginTop: project.id === 'bullet-time' ? '297px' : (project.id === 'icarus' ? '0' : (project.id === 'nachtbrakers' ? '-10px' : (project.id === 'kamer-van-brabant' ? '-10px' : (project.id === 'olifantendoders' ? '-20px' : '0'))))
               } : {
                 marginBottom: index < PROJECTS.length - 1 ? '60px' : '0'
               }}

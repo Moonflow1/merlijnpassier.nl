@@ -12,7 +12,9 @@ export default function AwardsSection() {
     <Section id="awards" className="bg-gray-50 !p-0">
       <div className="w-full">
         {/* Title Section */}
-        <div className="max-w-6xl mx-auto py-24 px-8">
+        {/* pb-4 instead of pb-24: with the heading's own 64px below it that
+            halves the space under the title from 160px to 80px. */}
+        <div className="max-w-6xl mx-auto pt-24 pb-4 px-8">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +35,8 @@ export default function AwardsSection() {
               className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start"
             >
               {/* Left Image - Golden Calf BW (hardcoded for Awards section) */}
-              <div className="lg:order-1">
+              {/* 76px down, so the photo starts level with the year line */}
+              <div className="lg:order-1 lg:mt-[76px]">
                 <div className="relative w-full rounded-lg overflow-hidden">
                   <Image
                     src="/images/projects/Castro-Golden-Calf-BW.jpg"
@@ -76,7 +79,7 @@ export default function AwardsSection() {
               </div>
 
               {/* Right Image - Golden Calf Color */}
-              <div className="lg:order-3">
+              <div className="lg:order-3 lg:mt-[76px]">
                 <div className="relative w-full rounded-lg overflow-hidden">
                   <Image
                     src={castroProject.imageSecondary!}

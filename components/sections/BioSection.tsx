@@ -22,7 +22,7 @@ export default function BioSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="space-y-8 text-lg leading-relaxed mt-16"
+          className="space-y-8 text-lg leading-relaxed"
         >
           {BIO_CONTENT.biography.split('\n\n').map((paragraph, index) => (
             <p key={index} className="text-gray-800">

@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
   title: "Merlijn Passier",
-  description: "Film Director & Producer",
+  description: "Director | Creative | Producer | Writer",
   navigation: [
     { label: "Work", href: "#projects" },
     { label: "About", href: "#bio" },

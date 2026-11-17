@@ -152,19 +152,20 @@ section#the_new p {
 }
 
 /* The bar is deliberately pulled left of the content column: its left gutter
-   is half the page's, while its right gutter stays on the content's right
-   edge. That moves the bar's centre left as well, so the centred menu shifts
-   with the logo instead of staying on the title's axis. One number per
-   breakpoint; halve or raise them together to move the whole bar. */
+   is three quarters of the page's, while its right gutter stays on the
+   content's right edge. That moves the bar's centre left as well, so the
+   centred menu shifts with the logo instead of staying on the title's axis.
+   The two widths below carry the one-row bar (it stacks under 1100px);
+   raise them towards the content's 160/120 to pull the bar back right. */
 @media (min-width: 1280px) {
   nav > div {
-    padding-left: 80px !important;
+    padding-left: 120px !important;
   }
 }
 
 @media (min-width: 1024px) and (max-width: 1279px) {
   nav > div {
-    padding-left: 60px !important;
+    padding-left: 90px !important;
   }
 }
 

@@ -60,16 +60,18 @@ export default function ProjectsSection() {
               transition={{ delay: index * 0.2 }}
               className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-4 lg:gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 items-start") : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
               style={isDesktop ? {
-                // Bullet Time to Icarus is a quarter of the usual 120px.
-                marginBottom: project.id === 'bullet-time' ? '30px' : (project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0')),
+                // Bullet Time sits close to its neighbours on request:
+                // 18px here against the usual 120px.
+                marginBottom: project.id === 'bullet-time' ? '18px' : (project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0')),
                 paddingTop: index === 0 ? '100px' : '0',
                 // Bullet Time's two films are pulled 237px above their row
                 // (see the media margins below), so the row has to start that
                 // much lower for the gap to read as 120px like everywhere else.
                 // Adjacent margins collapse to the larger of the two rather
                 // than adding up, so this has to carry Castro's 120px itself:
-                // 30 + 237 = 267, the 30 being a quarter of the usual gap.
-                marginTop: project.id === 'bullet-time' ? '267px' : (project.id === 'icarus' ? '0' : (project.id === 'nachtbrakers' ? '-10px' : (project.id === 'kamer-van-brabant' ? '-10px' : (project.id === 'olifantendoders' ? '-20px' : '0'))))
+                // 19 + 237 = 256; the gap reads 3px smaller than the 19
+                // because the two films differ by that much (-237 vs -240).
+                marginTop: project.id === 'bullet-time' ? '256px' : (project.id === 'icarus' ? '0' : (project.id === 'nachtbrakers' ? '-10px' : (project.id === 'kamer-van-brabant' ? '-10px' : (project.id === 'olifantendoders' ? '-20px' : '0'))))
               } : {
                 marginBottom: index < PROJECTS.length - 1 ? '60px' : '0'
               }}

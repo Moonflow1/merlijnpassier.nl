@@ -51,7 +51,7 @@ export default function Navigation() {
           scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
+        <div>
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <motion.a
@@ -60,7 +60,7 @@ export default function Navigation() {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="hover:opacity-70 transition-opacity lg:ml-12"
+              className="hover:opacity-70 transition-opacity"
               whileHover={{ scale: 1.05 }}
             >
               <Image
@@ -74,7 +74,7 @@ export default function Navigation() {
             </motion.a>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden min-[1100px]:flex items-center gap-8">
               {SITE_CONFIG.navigation.map((item) => (
                 <a
                   key={item.href}
@@ -97,7 +97,7 @@ export default function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden z-50 w-10 h-10 flex flex-col justify-center items-center space-y-1.5"
+              className="min-[1100px]:hidden z-50 w-10 h-10 flex flex-col justify-center items-center space-y-1.5"
               aria-label="Toggle menu"
             >
               <motion.span
@@ -132,7 +132,7 @@ export default function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-white md:hidden"
+            className="fixed inset-0 z-40 bg-white min-[1100px]:hidden"
           >
             <div className="flex flex-col items-center justify-center h-full space-y-8">
               {SITE_CONFIG.navigation.map((item, index) => (

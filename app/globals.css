@@ -63,10 +63,19 @@ section {
   padding: 160px 0 !important;
 }
 
-section > div {
+/* The fixed navigation lives outside <main>, so it is listed alongside
+   section > div everywhere below: that is what keeps the logo and the menu on
+   the same left and right edges as the content underneath them. <main> caps
+   the sections at 1600px; nav > div has to cap itself. */
+section > div,
+nav > div {
   margin-left: auto !important;
   margin-right: auto !important;
   width: 100%;
+}
+
+nav > div {
+  max-width: 1600px;
 }
 
 /* Consistent vertical rhythm - everything aligns on 8px grid */
@@ -107,21 +116,24 @@ section#the_new p {
 
 /* Horizontal padding - consistent across all sections */
 @media (min-width: 1280px) {
-  section > div {
+  section > div,
+  nav > div {
     padding-left: 160px !important;
     padding-right: 160px !important;
   }
 }
 
 @media (min-width: 1024px) and (max-width: 1279px) {
-  section > div {
+  section > div,
+  nav > div {
     padding-left: 120px !important;
     padding-right: 120px !important;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  section > div {
+  section > div,
+  nav > div {
     padding-left: 80px !important;
     padding-right: 80px !important;
   }
@@ -132,7 +144,8 @@ section#the_new p {
     padding: 80px 0 !important;
   }
 
-  section > div {
+  section > div,
+  nav > div {
     padding-left: 32px !important;
     padding-right: 32px !important;
   }

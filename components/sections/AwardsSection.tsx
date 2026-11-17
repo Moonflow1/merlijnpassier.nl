@@ -102,7 +102,10 @@ export default function AwardsSection() {
         {/* Bullet Time Laurels */}
         <div className="w-full bg-white relative" style={{ marginTop: '75px' }}>
           {/* Extra white space + Title */}
-          <div className="max-w-6xl mx-auto px-8 pb-12 lg:pt-[97px]">
+          {/* lg:pt-[33px]: 97px put 184px of whitespace above this heading,
+              wider than anything else on the page. 33 brings it to 120, the
+              spacing the project list runs at. */}
+          <div className="max-w-6xl mx-auto px-8 pb-12 lg:pt-[33px]">
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -141,7 +144,7 @@ export default function AwardsSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="w-full relative pb-12"
+            className="w-full relative pb-12 lg:pb-0"
             style={{ marginTop: '-58.5px' }}
           >
             <Image

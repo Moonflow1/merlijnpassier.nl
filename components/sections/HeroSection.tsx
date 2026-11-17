@@ -18,8 +18,9 @@ export default function HeroSection() {
       id="hero"
       className="relative h-screen overflow-hidden flex flex-col !items-stretch !p-0"
     >
-      {/* Title and Subtitle — !pt-24 clears the fixed 80px navigation bar */}
-      <div className="relative z-10 shrink-0 !pt-24 !px-8 text-center">
+      {/* Title and Subtitle — .hero-top clears the fixed bar, whatever its
+          current height is (see --nav-height in globals.css). */}
+      <div className="hero-top relative z-10 shrink-0 !px-8 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

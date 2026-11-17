@@ -169,9 +169,17 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.05em;
 }
 
-/* Smooth scrolling for anchor links */
+/* Smooth scrolling for anchor links. --nav-height is published by Navigation
+   and is larger than 80px on narrow screens, where the menu wraps onto its
+   own line; without it an anchor jump lands behind the bar. */
 section {
-  scroll-margin-top: 80px;
+  scroll-margin-top: calc(var(--nav-height, 80px) + 16px);
+}
+
+/* The hero sits under the fixed bar, so its title block has to start below
+   whatever height the bar currently has. */
+.hero-top {
+  padding-top: calc(var(--nav-height, 80px) + 24px) !important;
 }
 
 /* Spacing between sections */

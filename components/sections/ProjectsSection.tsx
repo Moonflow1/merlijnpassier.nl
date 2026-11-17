@@ -75,15 +75,19 @@ export default function ProjectsSection() {
             >
               {/* Left Media (Video 1 or Image).
                   Castro's poster is aligned with the picture inside its video,
-                  not with the video's frame: that frame is 125% tall while the
-                  film is 16:9, so about 120px of it is empty above the image.
-                  Hence +60px here where the text and the video sit at -60px.
+                  not with the video's frame. The frame is 125% of its width
+                  tall and the film does not fill it: measured off the rendered
+                  pixels at 1430, 76px of the frame is empty above the picture.
+                  Hence +16px here, where the text and the video sit at -60px.
+                  That 76px scales with the column, so the alignment is exact
+                  at 1430 and drifts a little at other widths -- same as every
+                  other offset in this file.
                 On one column the DOM order would put this media above the
                 project title; the order-* classes below keep the title and
                 its text first and group both media underneath it. From lg
                 up the three columns take over again. */}
               {isThreeColumn && (
-                <div className="order-2 lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '-237px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '60px' } : {}))) : {}}>
+                <div className="order-2 lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '-237px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '16px' } : {}))) : {}}>
                   {project.image ? (
                     // Always show image on left if available
                     <div className="relative w-full rounded-lg overflow-hidden" style={isDesktop && project.id === 'tranen-castro' ? { width: '71%' } : {}}>

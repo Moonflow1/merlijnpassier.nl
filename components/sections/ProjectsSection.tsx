@@ -69,18 +69,12 @@ export default function ProjectsSection() {
               transition={{ delay: index * 0.2 }}
               className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-4 lg:gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 items-start") : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
               style={isDesktop ? {
-                // Bullet Time sits close to its neighbours on request:
-                // 18px here against the usual 120px.
-                marginBottom: project.id === 'bullet-time' ? '18px' : (project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0')),
+                marginBottom: project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0'),
                 paddingTop: index === 0 ? '100px' : '0',
-                // Bullet Time's two films are pulled 237px above their row
-                // (see the media margins below), so the row has to start that
-                // much lower for the gap to read as 120px like everywhere else.
-                // Adjacent margins collapse to the larger of the two rather
-                // than adding up, so this has to carry Castro's 120px itself:
-                // 19 + 237 = 256; the gap reads 3px smaller than the 19
-                // because the two films differ by that much (-237 vs -240).
-                marginTop: project.id === 'bullet-time' ? '256px' : (project.id === 'icarus' ? '0' : (project.id === 'nachtbrakers' ? '-10px' : (project.id === 'kamer-van-brabant' ? '-10px' : (project.id === 'olifantendoders' ? '-20px' : '0'))))
+                // Bullet Time needs no offset of its own any more: its frames
+                // hug their films, so the 120px below Castro governs this gap
+                // exactly as it does for every other project.
+                marginTop: project.id === 'bullet-time' ? '0' : (project.id === 'icarus' ? '0' : (project.id === 'nachtbrakers' ? '-10px' : (project.id === 'kamer-van-brabant' ? '-10px' : (project.id === 'olifantendoders' ? '-20px' : '0'))))
               } : {
                 marginBottom: index < PROJECTS.length - 1 ? '60px' : '0'
               }}
@@ -99,7 +93,7 @@ export default function ProjectsSection() {
                 its text first and group both media underneath it. From lg
                 up the three columns take over again. */}
               {isThreeColumn && (
-                <div className="order-2 lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '-237px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '16px' } : {}))) : {}}>
+                <div className="order-2 lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '4px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '16px' } : {}))) : {}}>
                   {project.image ? (
                     // Always show image on left if available
                     <div className="relative w-full rounded-lg overflow-hidden" style={isDesktop && project.id === 'tranen-castro' ? { width: '71%' } : {}}>
@@ -115,10 +109,12 @@ export default function ProjectsSection() {
                   ) : project.trailerSecondary && project.trailer ? (
                     // If no image, show first video with custom sizing
                     project.id === 'bullet-time' ? (
-                      // The tall frame only makes sense in the desktop
-                      // three-column layout. The film itself is 16:9, so on one
-                      // column 177% leaves ~187px empty above and below it.
-                      <div style={{ paddingBottom: isDesktop ? '177%' : '56.25%', position: 'relative', height: 0, overflow: 'hidden', borderRadius: '0.5rem' }}>
+                      // 16:9, the film's own ratio. This was 177% on desktop,
+                      // which left 242px of empty frame above the film and
+                      // 247px below it (measured at 1634). Invisible, but it
+                      // pushed the next project hundreds of pixels down and
+                      // made every gap measurement off this frame meaningless.
+                      <div style={{ paddingBottom: '56.25%', position: 'relative', height: 0, overflow: 'hidden', borderRadius: '0.5rem' }}>
                         <iframe
                           src={`https://player.vimeo.com/video/${project.trailer.match(/vimeo\.com\/(\d+)/)?.[1]}?byline=0&portrait=0&title=0`}
                           frameBorder="0"
@@ -203,15 +199,16 @@ export default function ProjectsSection() {
               </div>
 
               {/* Right Media (Video 2 or single media) */}
-              <div className={isThreeColumn ? 'order-3 lg:order-3' : (index % 2 === 0 ? 'lg:order-2' : 'lg:order-1')} style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '-240px' } : (project.id === 'tranen-castro' ? { marginTop: '-60px' } : (project.id === 'icarus' ? { marginTop: '5px' } : (project.id === 'merlijn-over-de-grens' ? { marginTop: '8px' } : (project.id === 'merlijn-napoleon' ? { marginTop: '7px' } : (project.id === 'merlijn-atlantikwall' ? { marginTop: '7px' } : (project.id === 'nachtbrakers' ? { marginTop: '5px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '10px' } : (project.id === 'ai-media-innovation' ? { marginTop: '150px' } : (project.id === 'olifantendoders' ? { marginTop: '5px' } : {})))))))))) : {}}>
+              <div className={isThreeColumn ? 'order-3 lg:order-3' : (index % 2 === 0 ? 'lg:order-2' : 'lg:order-1')} style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '0px' } : (project.id === 'tranen-castro' ? { marginTop: '-60px' } : (project.id === 'icarus' ? { marginTop: '5px' } : (project.id === 'merlijn-over-de-grens' ? { marginTop: '8px' } : (project.id === 'merlijn-napoleon' ? { marginTop: '7px' } : (project.id === 'merlijn-atlantikwall' ? { marginTop: '7px' } : (project.id === 'nachtbrakers' ? { marginTop: '5px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '10px' } : (project.id === 'ai-media-innovation' ? { marginTop: '150px' } : (project.id === 'olifantendoders' ? { marginTop: '5px' } : {})))))))))) : {}}>
                 {isThreeColumn ? (
                   // Three column: show trailerSecondary, imageSecondary, or trailer
                   project.trailerSecondary ? (
                     <div style={{ height: 'auto' }}>
                       <div style={{
-                        // Same here: the tall frames are a desktop-only
-                        // device; one column always gets the film's own 16:9.
-                        paddingBottom: !isDesktop ? '56.25%' : (project.id === 'bullet-time' ? '177%' : (project.id === 'tranen-castro' ? '125%' : '56.25%')),
+                        // Each frame takes its film's own ratio. Castro keeps
+                        // its 125% on desktop: its poster is aligned against
+                        // the picture inside that frame.
+                        paddingBottom: isDesktop && project.id === 'tranen-castro' ? '125%' : '56.25%',
                         position: 'relative',
                         height: 0,
                         overflow: 'hidden',

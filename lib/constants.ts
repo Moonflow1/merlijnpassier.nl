@@ -19,7 +19,7 @@ export const BIO_CONTENT = {
   education: "Netherlands Film Academy (graduated 1997)",
   biography: `Merlijn Passier (born July 8, 1972, in Nuenen) is a Dutch film director and producer. He graduated from the Netherlands Film Academy in 1997 and is the owner of production company Cutjongens.
 
-Passier is known for his documentary work and has received critical acclaim for his films. His short documentary "De tranen van Castro" (2018) won the Golden Calf for Best Short Documentary at the Netherlands Film Festival. He has also worked extensively in television, both as a director and presenter.
+Passier is known for his documentary work and has received critical acclaim for his films. His short documentary "De tranen van Castro" (1997) won the Golden Calf for Best Short Documentary at the Netherlands Film Festival. He has also worked extensively in television, both as a director and presenter.
 
 As the founder of Cutjongens, Passier has produced numerous films and video productions, establishing himself as a prominent figure in Dutch cinema and television.`,
   highlights: [

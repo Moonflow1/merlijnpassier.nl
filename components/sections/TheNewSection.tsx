@@ -23,7 +23,7 @@ export default function TheNewSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-2xl text-center mb-16 font-light"
+          className="the-new-tagline text-2xl text-center mb-16 font-light"
         >
           {THE_NEW_INFO.tagline}
         </motion.p>

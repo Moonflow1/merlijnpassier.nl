@@ -114,6 +114,18 @@ section#the_new p {
   margin-top: 3px !important;
 }
 
+/* "Media, Reimagined." sits one line higher than the heading's 64px would
+   put it, with that line moved below it instead. 32px is the tagline's own
+   line-height, taken off above and added below, so everything under it
+   stays where it was. */
+section#the_new h2 {
+  margin-bottom: 32px !important;
+}
+
+.the-new-tagline {
+  margin-bottom: 56px !important;
+}
+
 /* Horizontal padding - consistent across all sections */
 @media (min-width: 1280px) {
   section > div,

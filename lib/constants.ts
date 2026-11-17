@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
   title: "Merlijn Passier",
-  description: "Director | Creative | Producer | Writer",
+  description: "Director | Creative | Writer | Producer",
   navigation: [
     { label: "Work", href: "#projects" },
     { label: "About", href: "#bio" },

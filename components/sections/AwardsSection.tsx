@@ -14,7 +14,11 @@ export default function AwardsSection() {
         {/* Title Section */}
         {/* pb-4 instead of pb-24: with the heading's own 64px below it that
             halves the space under the title from 160px to 80px. */}
-        <div className="max-w-6xl mx-auto pt-24 pb-4 px-8">
+        {/* lg:pt-[26px]: on desktop the gap above this heading has to come out
+            at 160px, the same as the one above ABOUT. It is built from 184px
+            of trailing space under the bio text, minus the 50px overlap this
+            section is given in globals.css, plus this padding. */}
+        <div className="max-w-6xl mx-auto pt-24 lg:pt-[26px] pb-4 px-8">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

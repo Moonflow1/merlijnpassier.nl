@@ -59,18 +59,8 @@ export default function HeroSection() {
         />
       </motion.div>
 
-      {/* View Work + Scroll Indicator */}
-      <div className="relative z-10 shrink-0 flex flex-col items-center gap-4 !pb-8">
-        <motion.a
-          href="#projects"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="inline-block !px-8 !py-3 border-2 border-black text-black uppercase tracking-wider hover:bg-black hover:text-white transition-all duration-300"
-        >
-          View Work
-        </motion.a>
-
+      {/* Scroll Indicator */}
+      <div className="relative z-10 shrink-0 flex flex-col items-center !pb-8">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

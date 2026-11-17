@@ -129,13 +129,16 @@ export default function AwardsSection() {
             </motion.div>
           </div>
 
-          {/* Laurels Image */}
+          {/* Laurels Image — pulled up by two blank lines, which is two times
+              the 29.25px line-height of the paragraph above it. Change this
+              one number to move it by a different number of lines. */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="w-full relative pb-12"
+            style={{ marginTop: '-58.5px' }}
           >
             <Image
               src={AWARDS_IMAGE}

@@ -55,7 +55,7 @@ export default function AwardsSection() {
                   {castroProject.title}
                 </h3>
                 <p className="text-sm uppercase tracking-wider opacity-60" style={{ marginBottom: '30px' }}>
-                  2018 • {castroProject.type}
+                  {castroProject.year} • {castroProject.type}
                 </p>
                 <p className="text-lg leading-relaxed" style={{ marginBottom: '30px' }}>
                   Castro's Tears won the Golden Calf for Best Documentary and the Golden Calf for Best Actor. The film won many awards on festivals world wide.

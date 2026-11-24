@@ -217,6 +217,36 @@ export const GALLERY_IMAGES = [
   }
 ];
 
+// The slideshow under the gallery grid. Upright photographs are deliberately
+// kept out of this list: the band is 16:9 and object-cover would crop a
+// portrait down to a sliver of itself.
+export const SLIDESHOW_IMAGES = [
+  { src: "/images/slideshow/slide-01.jpg", alt: "Filming at a border marker in the fields" },
+  { src: "/images/slideshow/slide-02.jpg", alt: "The studio set up for a recording" },
+  { src: "/images/slideshow/slide-03.jpg", alt: "A talkshow set lit in blue" },
+  { src: "/images/slideshow/slide-04.jpg", alt: "Recording a studio talkshow" },
+  { src: "/images/slideshow/slide-05.jpg", alt: "Two chairs on a warmly lit location set" },
+  { src: "/images/slideshow/slide-06.jpg", alt: "A location hall dressed for a shoot" },
+  { src: "/images/slideshow/slide-07.jpg", alt: "Two cameras set up in a classroom" },
+  { src: "/images/slideshow/slide-08.jpg", alt: "Watching the shot on the monitor on location" },
+  { src: "/images/slideshow/slide-09.jpg", alt: "Recording an interview in a gym" },
+  { src: "/images/slideshow/slide-10.jpg", alt: "A camera crane in the office set" },
+  { src: "/images/slideshow/slide-11.jpg", alt: "Crew and cast in the white studio" },
+  { src: "/images/slideshow/slide-12.jpg", alt: "Filming in a dressed living room" },
+  { src: "/images/slideshow/slide-13.jpg", alt: "An evening scene lit on location" },
+  { src: "/images/slideshow/slide-14.jpg", alt: "Merlijn and his cameraman on a winter shoot" },
+  { src: "/images/slideshow/slide-15.jpg", alt: "Shooting on a rooftop terrace" },
+  { src: "/images/slideshow/slide-16.jpg", alt: "Merlijn with his crew during a shoot" },
+  { src: "/images/slideshow/slide-17.jpg", alt: "Recording an interview on location" },
+  { src: "/images/slideshow/slide-18.jpg", alt: "The studio lit for a shoot" },
+  { src: "/images/slideshow/slide-19.jpg", alt: "An office scene built in the studio" },
+  { src: "/images/slideshow/slide-20.jpg", alt: "Shooting a scene against the white cyclorama" },
+  { src: "/images/slideshow/slide-21.jpg", alt: "Filming in a home kitchen" },
+  { src: "/images/slideshow/slide-22.jpg", alt: "Crew filming an office scene" },
+  { src: "/images/slideshow/slide-23.jpg", alt: "Following the scene on the monitor" },
+  { src: "/images/slideshow/slide-24.jpg", alt: "Behind the camera" }
+];
+
 export const CONTACT_INFO = {
   email: "merlijnpassier@gmail.com",
   company: "Cutjongens",

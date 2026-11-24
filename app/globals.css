@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  /* Measured from the hero photograph's own backdrop. It started as the hero
+     section's colour alone, so that the image edges would dissolve into the
+     page instead of showing as a rectangle; it is now the whole site's. */
+  --background: #f7f8f3;
   --foreground: #000000;
   --gray-custom: #e6e6e6;
-  /* Measured from the hero photograph's own backdrop so the image edges
-     dissolve into the page instead of showing as a rectangle. */
-  --hero-bg: #f7f8f3;
+  --hero-bg: var(--background);
 }
 
 @theme inline {
@@ -35,6 +36,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Also on html, so the strip that shows when the page is scrolled past its
+     end carries the same colour instead of the browser's white. */
+  background: var(--background);
 }
 
 body {

@@ -26,7 +26,7 @@ export default function ProjectsSection() {
     return () => mq.removeEventListener('change', update);
   }, []);
   return (
-    <Section id="projects" className="bg-gray-50">
+    <Section id="projects">
       <div className="w-full mx-auto">
         {/* Showreel */}
         <motion.div

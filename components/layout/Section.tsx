@@ -17,7 +17,7 @@ export default function Section({
   children,
   className = '',
   fullHeight = false,
-  background = 'bg-white',
+  background = 'bg-transparent',
   style,
 }: SectionProps) {
   return (

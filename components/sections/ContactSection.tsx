@@ -7,7 +7,7 @@ import { CONTACT_INFO } from '@/lib/constants';
 
 export default function ContactSection() {
   return (
-    <Section id="contact" className="bg-gray-50">
+    <Section id="contact">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}

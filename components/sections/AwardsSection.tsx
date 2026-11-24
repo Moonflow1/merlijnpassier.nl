@@ -9,7 +9,7 @@ export default function AwardsSection() {
   const castroProject = PROJECTS.find(p => p.id === 'tranen-castro');
 
   return (
-    <Section id="awards" className="bg-gray-50 !p-0">
+    <Section id="awards" className="!p-0">
       <div className="w-full">
         {/* Title Section */}
         {/* pb-4 instead of pb-24: with the heading's own 64px below it that
@@ -100,7 +100,7 @@ export default function AwardsSection() {
         )}
 
         {/* Bullet Time Laurels */}
-        <div className="w-full bg-white relative" style={{ marginTop: '75px' }}>
+        <div className="w-full relative" style={{ marginTop: '75px' }}>
           {/* Extra white space + Title */}
           {/* lg:pt-[33px]: 97px put 184px of whitespace above this heading,
               wider than anything else on the page. 33 brings it to 120, the

@@ -10,7 +10,7 @@ interface SlideshowProps {
   interval?: number;
 }
 
-export default function Slideshow({ images, interval = 5000 }: SlideshowProps) {
+export default function Slideshow({ images, interval = 3000 }: SlideshowProps) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -88,11 +88,24 @@ export default function Slideshow({ images, interval = 5000 }: SlideshowProps) {
           className="absolute inset-0 transition-opacity duration-700 ease-in-out"
           style={{ opacity: i === index ? 1 : 0 }}
         >
+          {/* An upright photograph is shown whole, with a blurred, enlarged
+              copy of itself filling the band behind it. Cropping it to 16:9
+              would leave a sliver; plain black bars would leave a hole. */}
+          {image.upright && (
+            <Image
+              src={image.src}
+              alt=""
+              aria-hidden
+              fill
+              className="object-cover scale-110 blur-2xl opacity-60"
+              sizes="(max-width: 768px) 100vw, 1100px"
+            />
+          )}
           <Image
             src={image.src}
             alt={image.alt}
             fill
-            className="object-cover"
+            className={image.upright ? 'object-contain' : 'object-cover'}
             sizes="(max-width: 768px) 100vw, 1100px"
             priority={i === 0}
             loading={i === 0 ? undefined : 'lazy'}

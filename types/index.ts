@@ -19,4 +19,7 @@ export interface Project {
 export interface GalleryImage {
   src: string;
   alt: string;
+  /** Taller than it is wide. The slideshow shows these whole rather than
+   *  cropping them to its 16:9 band. */
+  upright?: boolean;
 }

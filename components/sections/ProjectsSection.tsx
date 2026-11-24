@@ -67,7 +67,7 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-4 lg:gap-8 items-start" : (project.id === 'tranen-castro' ? "grid grid-cols-1 lg:grid-cols-[0.711fr_1fr_1.291fr] gap-4 lg:gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 items-start")) : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
+              className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-4 lg:gap-8 items-start" : (project.id === 'tranen-castro' ? "grid grid-cols-1 lg:grid-cols-[0.722fr_1fr_1.28fr] gap-4 lg:gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 items-start")) : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
               style={isDesktop ? {
                 marginBottom: project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0'),
                 paddingTop: index === 0 ? '100px' : '0',
@@ -80,15 +80,17 @@ export default function ProjectsSection() {
               }}
             >
               {/* Left Media (Video 1 or Image).
-                  Castro's poster and its video frame share this +16px, which
-                  is what puts their top edges on one line. The text column
+                  Castro's poster and its video frame share this +21.5px, which
+                  puts both top edges level with the letters of the year line
+                  (195.2 against the poster box's 189.7, measured from the font
+                  metrics rather than guessed off a screenshot). The text column
                   stays at -60px and starts higher, as it did before.
                 On one column the DOM order would put this media above the
                 project title; the order-* classes below keep the title and
                 its text first and group both media underneath it. From lg
                 up the three columns take over again. */}
               {isThreeColumn && (
-                <div className="order-2 lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '4px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '16px' } : {}))) : {}}>
+                <div className="order-2 lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '4px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '21.5px' } : {}))) : {}}>
                   {project.image ? (
                     // Always show image on left if available.
                     // Castro's poster used to sit at width:71% inside a third
@@ -198,16 +200,17 @@ export default function ProjectsSection() {
               </div>
 
               {/* Right Media (Video 2 or single media) */}
-              <div className={isThreeColumn ? 'order-3 lg:order-3' : (index % 2 === 0 ? 'lg:order-2' : 'lg:order-1')} style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '0px' } : (project.id === 'tranen-castro' ? { marginTop: '16px' } : (project.id === 'icarus' ? { marginTop: '5px' } : (project.id === 'merlijn-over-de-grens' ? { marginTop: '8px' } : (project.id === 'merlijn-napoleon' ? { marginTop: '7px' } : (project.id === 'merlijn-atlantikwall' ? { marginTop: '7px' } : (project.id === 'nachtbrakers' ? { marginTop: '5px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '10px' } : (project.id === 'ai-media-innovation' ? { marginTop: '150px' } : (project.id === 'olifantendoders' ? { marginTop: '5px' } : {})))))))))) : {}}>
+              <div className={isThreeColumn ? 'order-3 lg:order-3' : (index % 2 === 0 ? 'lg:order-2' : 'lg:order-1')} style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '0px' } : (project.id === 'tranen-castro' ? { marginTop: '21.5px' } : (project.id === 'icarus' ? { marginTop: '5px' } : (project.id === 'merlijn-over-de-grens' ? { marginTop: '8px' } : (project.id === 'merlijn-napoleon' ? { marginTop: '7px' } : (project.id === 'merlijn-atlantikwall' ? { marginTop: '7px' } : (project.id === 'nachtbrakers' ? { marginTop: '5px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '10px' } : (project.id === 'ai-media-innovation' ? { marginTop: '150px' } : (project.id === 'olifantendoders' ? { marginTop: '5px' } : {})))))))))) : {}}>
                 {isThreeColumn ? (
                   // Three column: show trailerSecondary, imageSecondary, or trailer
                   project.trailerSecondary ? (
                     <div style={{ height: 'auto' }}>
                       <div style={{
-                        // Each frame takes its film's own ratio. Castro keeps
-                        // its 125% on desktop: its poster is aligned against
-                        // the picture inside that frame.
-                        paddingBottom: isDesktop && project.id === 'tranen-castro' ? '125%' : '56.25%',
+                        // Each frame takes its film's own ratio, except
+                        // Castro's on desktop: 79.75% of its column makes the
+                        // frame exactly as tall as the poster beside it, so
+                        // their top and bottom edges line up.
+                        paddingBottom: isDesktop && project.id === 'tranen-castro' ? '79.75%' : '56.25%',
                         position: 'relative',
                         height: 0,
                         overflow: 'hidden',

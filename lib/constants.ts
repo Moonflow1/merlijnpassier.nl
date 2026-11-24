@@ -124,7 +124,7 @@ export const PROJECTS: Project[] = [
     type: "Talkshow - 54 x 40 minutes",
     image: "/images/projects/Merlijn-DKVB-Abri.jpg",
     trailer: "https://vimeo.com/1164643064",
-    description: "A weekly talk show featuring human interest stories, politics, and compelling interviews with extraordinary people.",
+    description: "A weekly talkshow featuring human interest stories, politics, and compelling interviews with extraordinary people.",
     awards: []
   },
   {

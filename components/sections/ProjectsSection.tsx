@@ -80,20 +80,15 @@ export default function ProjectsSection() {
               }}
             >
               {/* Left Media (Video 1 or Image).
-                  Castro's poster is aligned with the picture inside its video,
-                  not with the video's frame. The frame is 125% of its width
-                  tall and the film does not fill it: measured off the rendered
-                  pixels at 1634, 105px of the frame is empty above the picture.
-                  Hence +44px here, where the text and the video sit at -60px.
-                  That 105px scales with the column, so the alignment is exact
-                  at 1634 and drifts a little at other widths -- same as every
-                  other offset in this file.
+                  Castro's poster and its video frame share this +16px, which
+                  is what puts their top edges on one line. The text column
+                  stays at -60px and starts higher, as it did before.
                 On one column the DOM order would put this media above the
                 project title; the order-* classes below keep the title and
                 its text first and group both media underneath it. From lg
                 up the three columns take over again. */}
               {isThreeColumn && (
-                <div className="order-2 lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '4px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '44px' } : {}))) : {}}>
+                <div className="order-2 lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '4px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '16px' } : {}))) : {}}>
                   {project.image ? (
                     // Always show image on left if available.
                     // Castro's poster used to sit at width:71% inside a third
@@ -203,7 +198,7 @@ export default function ProjectsSection() {
               </div>
 
               {/* Right Media (Video 2 or single media) */}
-              <div className={isThreeColumn ? 'order-3 lg:order-3' : (index % 2 === 0 ? 'lg:order-2' : 'lg:order-1')} style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '0px' } : (project.id === 'tranen-castro' ? { marginTop: '-60px' } : (project.id === 'icarus' ? { marginTop: '5px' } : (project.id === 'merlijn-over-de-grens' ? { marginTop: '8px' } : (project.id === 'merlijn-napoleon' ? { marginTop: '7px' } : (project.id === 'merlijn-atlantikwall' ? { marginTop: '7px' } : (project.id === 'nachtbrakers' ? { marginTop: '5px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '10px' } : (project.id === 'ai-media-innovation' ? { marginTop: '150px' } : (project.id === 'olifantendoders' ? { marginTop: '5px' } : {})))))))))) : {}}>
+              <div className={isThreeColumn ? 'order-3 lg:order-3' : (index % 2 === 0 ? 'lg:order-2' : 'lg:order-1')} style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '0px' } : (project.id === 'tranen-castro' ? { marginTop: '16px' } : (project.id === 'icarus' ? { marginTop: '5px' } : (project.id === 'merlijn-over-de-grens' ? { marginTop: '8px' } : (project.id === 'merlijn-napoleon' ? { marginTop: '7px' } : (project.id === 'merlijn-atlantikwall' ? { marginTop: '7px' } : (project.id === 'nachtbrakers' ? { marginTop: '5px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '10px' } : (project.id === 'ai-media-innovation' ? { marginTop: '150px' } : (project.id === 'olifantendoders' ? { marginTop: '5px' } : {})))))))))) : {}}>
                 {isThreeColumn ? (
                   // Three column: show trailerSecondary, imageSecondary, or trailer
                   project.trailerSecondary ? (

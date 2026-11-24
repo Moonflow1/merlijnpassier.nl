@@ -188,10 +188,6 @@ export const GALLERY_IMAGES = [
     alt: "On location shoot"
   },
   {
-    src: "/images/gallery/IMG-20190111-WA0016.jpg",
-    alt: "Director at work"
-  },
-  {
     src: "/images/gallery/studio-interview-opname.jpg",
     alt: "Filming an interview in the studio"
   },

@@ -187,6 +187,21 @@ export default function ProjectsSection() {
                   {project.description}
                 </p>
 
+                {/* Its own paragraph, so the blank line that the description's
+                    30px bottom margin already makes separates the two. */}
+                {project.link && (
+                  <p className="text-lg leading-relaxed" style={{ marginBottom: '30px' }}>
+                    <a
+                      href={project.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 hover:opacity-60 transition-opacity"
+                    >
+                      {project.link.label}
+                    </a>
+                  </p>
+                )}
+
                 {project.awards && project.awards.length > 0 && (
                   <div className="space-y-2">
                     <h4 className="text-lg uppercase tracking-wider font-bold">

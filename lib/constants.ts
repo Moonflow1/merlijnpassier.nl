@@ -42,6 +42,8 @@ export interface Project {
   trailer?: string;
   trailerSecondary?: string;
   description: string;
+  /** An optional closing sentence of the description, rendered as a link. */
+  link?: { label: string; href: string };
   awards?: string[];
 }
 
@@ -136,6 +138,10 @@ export const PROJECTS: Project[] = [
     type: "Documentary series - 52 x 25 minutes",
     image: "/images/projects/IMG-20190111-WA0017.jpg",
     description: "Merlijn Passier and Leon van der Zanden immerse themselves in subcultures defined by stigma and stereotypes. Their journey results in raw, vulnerable encounters where they aren't afraid to put themselves on the line.",
+    link: {
+      label: "Click here to watch an old episode on joining the army.",
+      href: "https://www.youtube.com/watch?v=lEcHM5YFDYU"
+    },
     awards: []
   }
 ];

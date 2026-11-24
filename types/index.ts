@@ -13,6 +13,8 @@ export interface Project {
   trailer?: string;
   trailerSecondary?: string;
   description: string;
+  /** An optional closing sentence of the description, rendered as a link. */
+  link?: { label: string; href: string };
   awards?: string[];
 }
 

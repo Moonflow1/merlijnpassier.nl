@@ -67,7 +67,7 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-4 lg:gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 items-start") : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
+              className={isThreeColumn ? (project.id === 'kamer-van-brabant' ? "grid grid-cols-1 lg:grid-cols-[0.825fr_1fr_1.5fr] gap-4 lg:gap-8 items-start" : (project.id === 'tranen-castro' ? "grid grid-cols-1 lg:grid-cols-[0.711fr_1fr_1.291fr] gap-4 lg:gap-8 items-start" : "grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 items-start")) : (project.id === 'olifantendoders' ? "grid grid-cols-1 lg:grid-cols-[1.44fr_1fr] gap-12 items-start" : "grid grid-cols-1 lg:grid-cols-2 gap-12 items-start")}
               style={isDesktop ? {
                 marginBottom: project.id === 'olifantendoders' ? '-60px' : (index < PROJECTS.length - 1 ? '120px' : '0'),
                 paddingTop: index === 0 ? '100px' : '0',
@@ -83,20 +83,24 @@ export default function ProjectsSection() {
                   Castro's poster is aligned with the picture inside its video,
                   not with the video's frame. The frame is 125% of its width
                   tall and the film does not fill it: measured off the rendered
-                  pixels at 1430, 76px of the frame is empty above the picture.
-                  Hence +16px here, where the text and the video sit at -60px.
-                  That 76px scales with the column, so the alignment is exact
-                  at 1430 and drifts a little at other widths -- same as every
+                  pixels at 1634, 105px of the frame is empty above the picture.
+                  Hence +44px here, where the text and the video sit at -60px.
+                  That 105px scales with the column, so the alignment is exact
+                  at 1634 and drifts a little at other widths -- same as every
                   other offset in this file.
                 On one column the DOM order would put this media above the
                 project title; the order-* classes below keep the title and
                 its text first and group both media underneath it. From lg
                 up the three columns take over again. */}
               {isThreeColumn && (
-                <div className="order-2 lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '4px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '16px' } : {}))) : {}}>
+                <div className="order-2 lg:order-1" style={isDesktop ? (project.id === 'bullet-time' ? { marginTop: '4px' } : (project.id === 'kamer-van-brabant' ? { marginTop: '7px' } : (project.id === 'tranen-castro' ? { marginTop: '44px' } : {}))) : {}}>
                   {project.image ? (
-                    // Always show image on left if available
-                    <div className="relative w-full rounded-lg overflow-hidden" style={isDesktop && project.id === 'tranen-castro' ? { width: '71%' } : {}}>
+                    // Always show image on left if available.
+                    // Castro's poster used to sit at width:71% inside a third
+                    // of the row, leaving 117px of dead space beside it. Its
+                    // column is 0.711fr now, so the poster fills it at the same
+                    // size and that 117px went to the video instead.
+                    <div className="relative w-full rounded-lg overflow-hidden">
                       <Image
                         src={project.image}
                         alt={`${project.title} - ${project.imageSecondary ? 'Award 1' : ''}`}

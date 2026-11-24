@@ -161,6 +161,11 @@ export default function ProjectsSection() {
                           height: 'auto',
                           objectFit: 'contain',
                           display: 'block',
+                          // These three are JPEGs with a hard white rectangle
+                          // around the statuette. Multiplying against the page
+                          // drops the white out and leaves the award standing
+                          // on the background colour, whatever it is.
+                          mixBlendMode: 'multiply',
                           // lift slightly so the mark reads as centred on the title
                           // rather than on the title-plus-year block
                           transform: isDesktop ? 'translateY(-15px)' : undefined,

@@ -184,24 +184,40 @@ export const GALLERY_IMAGES = [
     alt: "Merlijn directing on set with crew"
   },
   {
-    src: "/images/gallery/IMG-20190111-WA0015.jpg",
-    alt: "Behind the scenes - production"
-  },
-  {
-    src: "/images/gallery/Merlijn en Kalf.jpg",
-    alt: "Merlijn with Golden Calf award"
-  },
-  {
-    src: "/images/gallery/M&L1.jpg",
-    alt: "Production meeting"
-  },
-  {
     src: "/images/gallery/Merlijn & Reinout.jpg",
     alt: "On location shoot"
   },
   {
     src: "/images/gallery/IMG-20190111-WA0016.jpg",
     alt: "Director at work"
+  },
+  {
+    src: "/images/gallery/studio-interview-opname.jpg",
+    alt: "Filming an interview in the studio"
+  },
+  {
+    src: "/images/gallery/regiekamer.jpg",
+    alt: "Vision mixing in the gallery during a recording"
+  },
+  {
+    src: "/images/gallery/merlijn-cameraman-locatie.jpg",
+    alt: "Merlijn on location with his cameraman"
+  },
+  {
+    src: "/images/gallery/studio-setbouw.jpg",
+    alt: "Lighting the studio set before a shoot"
+  },
+  {
+    src: "/images/gallery/opname-interieur.jpg",
+    alt: "Shooting an interview on location"
+  },
+  {
+    src: "/images/gallery/merlijn-okkie-camera.jpg",
+    alt: "Merlijn and his cameraman filming outdoors"
+  },
+  {
+    src: "/images/gallery/greenscreen-studio.jpg",
+    alt: "Directing a green screen shoot"
   }
 ];
 

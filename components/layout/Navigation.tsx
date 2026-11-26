@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { Fragment, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { SITE_CONFIG } from '@/lib/constants';
@@ -8,11 +8,15 @@ import { SITE_CONFIG } from '@/lib/constants';
 /**
  * Every navigation item is always on screen — there is no hamburger at any
  * width. Below 1100px the row cannot hold the logo and all seven labels side
- * by side, so the menu drops to its own line under the logo and wraps as far
- * as it needs to. That makes the bar taller on narrow screens, which is why
+ * by side, so the menu drops to its own line under the logo and breaks into
+ * two centred lines. That makes the bar taller on narrow screens, which is why
  * its measured height is published as --nav-height: the hero reads it to know
  * how much room to leave, and section scroll-margin uses it for anchor jumps.
  */
+/** How many labels go on the first line below 1100px; the rest follow on the
+ *  second. Seven items split 4 + 3. */
+const NAV_FIRST_ROW = 4;
+
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -101,32 +105,42 @@ export default function Navigation() {
             />
           </motion.a>
 
-          {/* Navigation items — full width on their own line below 1100px,
-              centred in the middle grid column above it. */}
+          {/* Navigation items — two centred lines on their own row below
+              1100px, a single centred row in the middle grid column above it. */}
           <div
             className="
               flex flex-wrap items-center
-              w-full justify-start gap-x-4 gap-y-1
+              w-full justify-center gap-x-4 gap-y-2
               min-[1100px]:w-auto min-[1100px]:col-start-2
               min-[1100px]:justify-center min-[1100px]:gap-8
             "
           >
-            {SITE_CONFIG.navigation.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
-                }}
-                className={`uppercase tracking-wide transition-all hover:opacity-100 whitespace-nowrap text-[11px] sm:text-xs min-[1100px]:text-sm min-[1100px]:px-2 ${
-                  activeSection === item.href
-                    ? 'opacity-100 font-bold'
-                    : 'opacity-60'
-                }`}
-              >
-                {item.label}
-              </a>
+            {SITE_CONFIG.navigation.map((item, index) => (
+              <Fragment key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                  }}
+                  className={`uppercase tracking-wide transition-all hover:opacity-100 whitespace-nowrap text-[11px] sm:text-xs min-[1100px]:text-sm min-[1100px]:px-2 ${
+                    activeSection === item.href
+                      ? 'opacity-100 font-bold'
+                      : 'opacity-60'
+                  }`}
+                >
+                  {item.label}
+                </a>
+                {/* A full-width, zero-height flex item forces the wrap here, so
+                    the seven labels fall 4 + 3 and both lines sit centred.
+                    Left to itself the row fits five before breaking, which
+                    leaves a ragged 5 + 2. `hidden` takes it out of the flex
+                    flow entirely above 1100px, where all seven fit on one
+                    line. Keep it in step with NAV_FIRST_ROW. */}
+                {index === NAV_FIRST_ROW - 1 && (
+                  <div aria-hidden className="basis-full h-0 min-[1100px]:hidden" />
+                )}
+              </Fragment>
             ))}
           </div>
         </div>

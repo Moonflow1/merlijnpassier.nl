@@ -191,9 +191,11 @@ section#the_new h2 {
   }
 }
 
+/* On a phone the bar is not pulled left at all: the logo lines up with the
+   page's own 32px gutter, and the menu is centred under it. */
 @media (max-width: 767px) {
   nav > div {
-    padding-left: 16px !important;
+    padding-left: 32px !important;
   }
 }
 
@@ -244,6 +246,26 @@ section#hero {
 section#the_new {
   min-height: auto !important;
   padding-bottom: 110px !important;
+}
+
+/* Phone-only spacing corrections. Everything below is measured against the
+   80px section padding that phones get, which together with the next
+   section's 80px puts 160px of white between any two sections. Each rule
+   here cancels an offset that was measured on the desktop layout and makes
+   that boundary read wider or narrower than the rest. Tablets keep the
+   160px padding and are left alone. */
+@media (max-width: 767px) {
+  /* 110px below the_new is a desktop figure; 80 keeps this boundary level
+     with the others. */
+  section#the_new {
+    padding-bottom: 80px !important;
+  }
+
+  /* The hero has no bottom padding of its own — it ends with the scroll
+     indicator — so this boundary came out 33px short. */
+  section#projects {
+    padding-top: 113px !important;
+  }
 }
 
 /* Desktop-only overlap between sections (mobile stacks normally) */

@@ -18,7 +18,10 @@ export default function AwardsSection() {
             at 160px, the same as the one above ABOUT. It is built from 184px
             of trailing space under the bio text, minus the 50px overlap this
             section is given in globals.css, plus this padding. */}
-        <div className="max-w-6xl mx-auto pt-24 lg:pt-[26px] pb-4 px-8">
+        {/* pt-[56px] on a phone: this section has no padding of its own, so
+            this padding is the whole gap above AWARDS. 96px made it the
+            widest boundary on the page there. */}
+        <div className="max-w-6xl mx-auto pt-[56px] md:pt-24 lg:pt-[26px] pb-4 px-8">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -138,13 +141,15 @@ export default function AwardsSection() {
 
           {/* Laurels Image — pulled up by two blank lines, which is two times
               the 29.25px line-height of the paragraph above it. Change this
-              one number to move it by a different number of lines. */}
+              one number to move it by a different number of lines.
+              pb-20 on a phone: with the section carrying no padding of its
+              own, this padding is the entire gap down to the_new. */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="w-full relative pb-12 lg:pb-0"
+            className="w-full relative pb-20 md:pb-12 lg:pb-0"
             style={{ marginTop: '-58.5px' }}
           >
             <Image

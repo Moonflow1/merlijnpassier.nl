@@ -66,7 +66,10 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div style={{ marginTop: '177px', textAlign: 'center' }}>
+            {/* 177px drops the button level with the foot of the photographs
+                beside it. There is nothing beside it in one column, so on a
+                phone that was a hole; there it keeps an ordinary distance. */}
+            <div className="!mt-12 lg:!mt-[177px]" style={{ textAlign: 'center' }}>
               <motion.a
                 href={`mailto:${CONTACT_INFO.email}`}
                 whileHover={{ scale: 1.05 }}
@@ -85,7 +88,11 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="lg:order-3"
           >
-            <div className="relative w-full rounded-lg overflow-hidden" style={{ width: '68%' }}>
+            {/* 68% is a desktop measure: it makes this photograph end level
+                with the taller one on the left. In one column it only pushed
+                the picture off centre, so below lg it runs full width like
+                the other. */}
+            <div className="relative w-full rounded-lg overflow-hidden lg:w-[68%]">
               <Image
                 src={CONTACT_INFO.images[1]}
                 alt="Merlijn Passier 2"
